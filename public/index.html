@@ -16,9 +16,14 @@
         const fetchBtn = document.getElementById('fetch-btn')
         const responseText = document.getElementById('response-output')
 
-        fetchBtn.addEventListener('click', () => {
-          responseText.innerText = 'Static Text Replacement'
-        })
+        async function helloWorld() {
+          const response = await fetch('/functions/index.js')
+          const data = await response.data()
+          console.log(data)
+          return data
+        }
+
+        fetchBtn.addEventListener('click', helloWorld)
       })
     </script>
   </body>
