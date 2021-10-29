@@ -11,7 +11,6 @@ exports.handler = async (event, context) => {
       `https://api.github.com/users/${user}/gists`,
     )
     const data = await response.data
-    console.log(data)
 
     return {
       statusCode: 200,

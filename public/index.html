@@ -13,33 +13,32 @@
     <button id="fetch-btn">Fetch</button>
     <p id="response-output">Response Placeholder</p>
 
+    <ul id="list"></ul>
+
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener('DOMContentLoaded', async () => {
         const fetchBtn = document.getElementById('fetch-btn')
         const responseText = document.getElementById('response-output')
         const input = document.querySelector('.user-input')
-
         let user = ''
 
-        // async function helloWorld() {
-        //   const response = await fetch('.netlify/functions/index', {
-        //     body: { user },
-        //   })
-        //   const data = await response.body
-        //   console.log(data)
-        //   return data
-        // }
-
         async function getGists() {
-          console.log('ENTRA A GETGISTS')
           const response = await fetch(
             `.netlify/functions/user-gists?user=${user}`,
           )
-          console.log('ACABA LA PETICION')
           const data = await response.json()
-          console.log('PARSEA LA DATA')
-          console.log(data)
+          listGists(data)
           return data
+        }
+
+        function listGists(data) {
+          const list = document.getElementById('list')
+          list.innerHTML = ''
+          data.forEach((gist) => {
+            const li = document.createElement('li')
+            li.innerText = gist.description
+            list.appendChild(li)
+          })
         }
 
         // https://api.github.com/users/khriztianmoreno/gists
