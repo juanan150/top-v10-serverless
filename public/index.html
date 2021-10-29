@@ -8,6 +8,8 @@
   </head>
   <body>
     <h1>Up and Running with Serverless Functions</h1>
+
+    <input class="user-input" type="text" placeholder="GitHub user" />
     <button id="fetch-btn">Fetch</button>
     <p id="response-output">Response Placeholder</p>
 
@@ -15,15 +17,31 @@
       document.addEventListener('DOMContentLoaded', () => {
         const fetchBtn = document.getElementById('fetch-btn')
         const responseText = document.getElementById('response-output')
+        const input = document.querySelector('.user-input')
 
-        async function helloWorld() {
-          const response = await fetch('.netlify/functions/index')
+        let user = ''
 
-          console.log(response)
-          return response
+        // async function helloWorld() {
+        //   const response = await fetch('.netlify/functions/index', {
+        //     body: { user },
+        //   })
+        //   const data = await response.body
+        //   console.log(data)
+        //   return data
+        // }
+
+        async function getGists() {
+          const response = await fetch(
+            `.netlify/functions/user-gists?user=${user}`,
+          )
+          const data = await response.json()
+          console.log(data)
+          return data
         }
 
-        fetchBtn.addEventListener('click', helloWorld)
+        // https://api.github.com/users/khriztianmoreno/gists
+        input.addEventListener('change', (e) => (user = e.target.value))
+        fetchBtn.addEventListener('click', getGists)
       })
     </script>
   </body>
