@@ -31,10 +31,13 @@
         // }
 
         async function getGists() {
+          console.log('ENTRA A GETGISTS')
           const response = await fetch(
             `.netlify/functions/user-gists?user=${user}`,
           )
+          console.log('ACABA LA PETICION')
           const data = await response.json()
+          console.log('PARSEA LA DATA')
           console.log(data)
           return data
         }

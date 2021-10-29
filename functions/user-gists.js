@@ -1,15 +1,27 @@
+const axios = require('axios')
+
 exports.handler = async (event, context) => {
   try {
     const user = event.queryStringParameters.user
+    console.log('hi')
 
-    const gists = await fetch(`https://api.github.com/users/${user}/gists`)
+    console.log(`https://api.github.com/users/${user}/gists`)
+
+    const response = await axios.get(
+      `https://api.github.com/users/${user}/gists`,
+    )
+    const data = await response.data
+    console.log(data)
 
     return {
       statusCode: 200,
-      body: JSON.stringify(gists),
+      body: JSON.stringify(data),
     }
   } catch (err) {
     console.log(err)
-    return err
+    return {
+      statusCode: 500,
+      body: JSON.stringify(err),
+    }
   }
 }

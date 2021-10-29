@@ -1,0 +1,24 @@
+{
+  "name": "top-v10-serverless",
+  "version": "1.0.0",
+  "description": "¡Aprendamos a utilizar las funciones sin servidor en menos de 30 minutos!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanan150/top-v10-serverless.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juanan150/top-v10-serverless/issues"
+  },
+  "homepage": "https://github.com/juanan150/top-v10-serverless#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "node-fetch": "^3.0.0"
+  }
+}
