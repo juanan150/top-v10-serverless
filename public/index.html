@@ -17,10 +17,10 @@
         const responseText = document.getElementById('response-output')
 
         async function helloWorld() {
-          const response = await fetch('/functions/index.js')
-          const data = await response.data()
-          console.log(data)
-          return data
+          const response = await fetch('.netlify/functions/index')
+
+          console.log(response)
+          return response
         }
 
         fetchBtn.addEventListener('click', helloWorld)
